@@ -131,5 +131,5 @@ class Test_register():
     continueButton=self.driver.find_element(By.XPATH, r.CONTINUE_BUTTON_XPATH)
     continueButton.click()
     sleep(6)
-    warningMessage=self.driver.find_element(By.XPATH,"//div[@class='toast-body']")
-    assert warningMessage.text == "• Girdiğiniz e-posta adresi ile kayıtlı üyelik bulunmaktadır."
+    warningMessage=self.driver.find_element(By.CLASS_NAME,r.WARNING_MESSAGE_CLASSNAME)
+    assert warningMessage.text == r.WARNING_MESSAGE
