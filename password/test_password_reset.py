@@ -32,6 +32,7 @@ class Test_password_reset():
     sendButton.click()
     sleep(3)
     warningMessage=self.driver.find_element(By.XPATH,p.POPUP_MESSAGE_XPATH)
+    sleep(3)
     assert warningMessage.text == p.INVALID_EPOSTA_MESSAGE
   
   def test_success_password_reset(self):
@@ -42,6 +43,7 @@ class Test_password_reset():
     sendButton.click()
     sleep(3)
     warningMessage=self.driver.find_element(By.XPATH,p.POPUP_MESSAGE_XPATH)
+    sleep(3)
     assert warningMessage.text == p.VALID_EPOSTA_MESSAGE
 
       

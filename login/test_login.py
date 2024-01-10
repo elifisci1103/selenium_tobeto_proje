@@ -29,6 +29,7 @@ class Test_login():
     loginButton=self.driver.find_element(By.XPATH,c.LOGIN_BUTTON_XPATH)
     loginButton.click()
     warningMessage=self.driver.find_element(By.XPATH, c.WARNING_MESSAGE_XPATH)
+    sleep(3)
     assert warningMessage.text == c.WARNING_MESSAGE
 
   
@@ -36,6 +37,7 @@ class Test_login():
     loginButton=self.driver.find_element(By.XPATH,c.LOGIN_BUTTON_XPATH)
     loginButton.click()
     warningMessage=self.driver.find_element(By.XPATH,c.WARNING_MESSAGE_XPATH)
+    sleep(2)
     assert warningMessage.text == c.WARNING_MESSAGE
 
 
@@ -49,6 +51,7 @@ class Test_login():
     loginButton=self.driver.find_element(By.XPATH,c.LOGIN_BUTTON_XPATH)
     loginButton.click()
     popUpMessage=WebDriverWait(self.driver,5).until(ec.visibility_of_element_located((By.XPATH,c.POPUP_MESSAGE_XPATH)))
+    sleep(2)
     assert popUpMessage.text == c.POPUP_MESSAGE_POSITIVE
 
 
