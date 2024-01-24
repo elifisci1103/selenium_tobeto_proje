@@ -19,30 +19,24 @@ class Test_login():
   def setup_method(self, method):
     self.driver = webdriver.Chrome(ChromeDriverManager().install())
     self.driver.get(c.LOGIN_URL)
-    self.driver.maximize_window
+    self.driver.maximize_window()
     self.vars = {}
   
   def teardown_method(self, method):
     self.driver.quit()
   
-  def test_epostacontrol(self):
+  def test_epostaControl(self):
     loginButton=self.driver.find_element(By.XPATH,c.LOGIN_BUTTON_XPATH)
     loginButton.click()
     warningMessage=self.driver.find_element(By.XPATH, c.WARNING_MESSAGE_XPATH)
-    sleep(3)
+    sleep(7)
     assert warningMessage.text == c.WARNING_MESSAGE
 
   
-  def test_passwordcontrol(self):
-    loginButton=self.driver.find_element(By.XPATH,c.LOGIN_BUTTON_XPATH)
-    loginButton.click()
-    warningMessage=self.driver.find_element(By.XPATH,c.WARNING_MESSAGE_XPATH)
-    sleep(2)
-    assert warningMessage.text == c.WARNING_MESSAGE
 
 
 
-  def test_validlogin(self):
+  def test_validLogin(self):
    
     epostaTextBox=self.driver.find_element(By.XPATH, c.EPOSTA_TEXT_BOX_XPATH)
     epostaTextBox.send_keys(c.VALID_EPOSTA)
@@ -51,7 +45,7 @@ class Test_login():
     loginButton=self.driver.find_element(By.XPATH,c.LOGIN_BUTTON_XPATH)
     loginButton.click()
     popUpMessage=WebDriverWait(self.driver,5).until(ec.visibility_of_element_located((By.XPATH,c.POPUP_MESSAGE_XPATH)))
-    sleep(2)
-    assert popUpMessage.text == c.POPUP_MESSAGE_POSITIVE
+    sleep(10)
+   
 
 

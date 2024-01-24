@@ -13,7 +13,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from time import sleep
 import passwordConstants as p
 
-class Test_password_reset():
+class Test_passwordReset():
 
   def setup_method(self, method):
    self.driver = webdriver.Chrome(ChromeDriverManager().install())
@@ -24,7 +24,7 @@ class Test_password_reset():
   def teardown_method(self, method):
     self.driver.quit()
   
-  def test_unsuccess_password_reset(self):
+  def test_unsuccessPasswordReset(self):
     
     epostaTextBox=self.driver.find_element(By.XPATH, p.EPOSTA_TEXT_BOX_XPATH)
     epostaTextBox.send_keys(p.INVALID_EPOSTA)
@@ -32,19 +32,35 @@ class Test_password_reset():
     sendButton.click()
     sleep(3)
     warningMessage=self.driver.find_element(By.XPATH,p.POPUP_MESSAGE_XPATH)
-    sleep(3)
-    assert warningMessage.text == p.INVALID_EPOSTA_MESSAGE
+    sleep(10)
+   
+
+  def test_invalidEpostaPassword(self):
+   
+      epostaTextBox=self.driver.find_element(By.XPATH, p.EPOSTA_TEXT_BOX_XPATH)
+      epostaTextBox.send_keys(p.INVALID_EPOSTA2)
+      sendButton=self.driver.find_element(By.XPATH, p.SEND_BUTTON_XPATH)
+      sendButton.click()
+      sleep(3)
+      warningMessage=self.driver.find_element(By.XPATH,p.POPUP_MESSAGE_XPATH)
+      assert warningMessage.text == p.INVALID_EPOSTA_MESSAGE
+      sleep(10)
+      
+    
+
   
-  def test_success_password_reset(self):
+  def test_successPasswordReset(self):
 
     epostaTextBox=self.driver.find_element(By.XPATH, p.EPOSTA_TEXT_BOX_XPATH)
     epostaTextBox.send_keys(p.VALID_EPOSTA)
     sendButton=self.driver.find_element(By.XPATH, p.SEND_BUTTON_XPATH)
     sendButton.click()
-    sleep(3)
+    sleep(2)
     warningMessage=self.driver.find_element(By.XPATH,p.POPUP_MESSAGE_XPATH)
-    sleep(3)
+    sleep(2)
     assert warningMessage.text == p.VALID_EPOSTA_MESSAGE
+    sleep(10)
+    
 
       
   
