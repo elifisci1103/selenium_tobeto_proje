@@ -26,57 +26,46 @@ class Test_mainPageNavbar():
   def teardown_method(self, method):
     self.driver.quit()
   
-  def test_mainPage(self):
-    
-    
+
+  @pytest.mark.parametrize("location, url", [
+        (n.MAIN_PAGE_LINKTEXT, n.MAIN_PAGE_URL),
+        (n.PROFILE_LINK_TEXT, n.PROFILE_URL),(n.REVIEWS_LINK_TEXT,n.REVIEWS_URL),
+        (n.CATALOG_LINK_TEXT,n.CATALOG_URL),(n.CALENDAR_LINK_TEXT,n.CALENDAR_URL),(n.ISTANBUL_CODING_LINK_TEXT,n.ISTANBUL_CODING_URL)])
+  
+  def test_navBar(self,location,url):
+
    emailTextBox= self.driver.find_element(By.XPATH,l.EPOSTA_TEXT_BOX_XPATH)
    emailTextBox.send_keys(l.VALID_EPOSTA)
-   passwordTextBox=self.driver.find_element(By.XPATH, l.VALID_PASSWORD)
+   passwordTextBox=self.driver.find_element(By.XPATH, l.PASSWORD_TEXT_BOX_XPATH)
    passwordTextBox.send_keys(l.VALID_PASSWORD)
    loginButton=self.driver.find_element(By.XPATH, l.LOGIN_BUTTON_XPATH)
    loginButton.click()
-   mainPage=self.driver.find_element(By.LINK_TEXT, n.MAIN_PAGE_LINKTEXT)
+   sleep(3)
+   mainPage=self.driver.find_element(By.LINK_TEXT, location)
    mainPage.click()
-   assert self.driver.current_url==n.MAIN_PAGE_URL_
+   assert self.driver.current_url==url
 
-  
+  def test_profileSummary(self):
+
+   emailTextBox= self.driver.find_element(By.XPATH,l.EPOSTA_TEXT_BOX_XPATH)
+   emailTextBox.send_keys(l.VALID_EPOSTA)
+   passwordTextBox=self.driver.find_element(By.XPATH, l.PASSWORD_TEXT_BOX_XPATH)
+   passwordTextBox.send_keys(l.VALID_PASSWORD)
+   loginButton=self.driver.find_element(By.XPATH, l.LOGIN_BUTTON_XPATH)
+   loginButton.click()
+   sleep(10)
+   profileSummary=self.driver.find_element(By.CSS_SELECTOR, n.PROFILE_SUMMARY_CSS)
+   profileSummary.click()
+   profileInfo=WebDriverWait(self.driver,5).until(ec.visibility_of_element_located((By.XPATH,n.PROFILE_INFO_XPATH)))
+   sleep(3)
+   profileInfo.is_displayed
 
 
 
 
 
-    self.driver.find_element(By.LINK_TEXT, "Profilim").click()
-    element = self.driver.find_element(By.LINK_TEXT, "Profilim")
-    actions = ActionChains(self.driver)
-    actions.move_to_element(element).perform()
-    element = self.driver.find_element(By.CSS_SELECTOR, "body")
-    actions = ActionChains(self.driver)
-    actions.move_to_element(element, 0, 0).perform()
-    self.driver.find_element(By.LINK_TEXT, "Değerlendirmeler").click()
-    element = self.driver.find_element(By.LINK_TEXT, "Değerlendirmeler")
-    actions = ActionChains(self.driver)
-    actions.move_to_element(element).perform()
-    element = self.driver.find_element(By.CSS_SELECTOR, "body")
-    actions = ActionChains(self.driver)
-    actions.move_to_element(element, 0, 0).perform()
-    self.driver.find_element(By.LINK_TEXT, "Katalog").click()
-    element = self.driver.find_element(By.LINK_TEXT, "Katalog")
-    actions = ActionChains(self.driver)
-    actions.move_to_element(element).perform()
-    element = self.driver.find_element(By.CSS_SELECTOR, "body")
-    actions = ActionChains(self.driver)
-    actions.move_to_element(element, 0, 0).perform()
-    element = self.driver.find_element(By.LINK_TEXT, "Takvim")
-    actions = ActionChains(self.driver)
-    actions.move_to_element(element).perform()
-    self.driver.find_element(By.LINK_TEXT, "Takvim").click()
-    element = self.driver.find_element(By.LINK_TEXT, "Takvim")
-    actions = ActionChains(self.driver)
-    actions.move_to_element(element).perform()
-    element = self.driver.find_element(By.CSS_SELECTOR, "body")
-    actions = ActionChains(self.driver)
-    actions.move_to_element(element, 0, 0).perform()
-    self.driver.find_element(By.LINK_TEXT, "İstanbul Kodluyor").click()
-    self.driver.find_element(By.CSS_SELECTOR, "span:nth-child(3) > svg").click()
-    self.driver.close()
+
+   
+   
+   
   

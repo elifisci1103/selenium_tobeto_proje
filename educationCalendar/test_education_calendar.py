@@ -39,8 +39,8 @@ class Test_educationCalendar():
     Test_educationCalendar.test_educationCalendarAccess(self) 
     searchEducationText= WebDriverWait(self.driver, 5).until(ec.visibility_of_element_located((By.XPATH, e.SEARCH_EDUCATION_XPATH)))
     searchEducationText.send_keys(e.SEARCH_EDUCATION_TEXT)
-    sleep(3)
     qualityAndTest=WebDriverWait(self.driver, 5).until(ec.visibility_of_element_located((By.XPATH, e.QUALITY_TEST_XPATH)))
+    sleep(3)
     allText=qualityAndTest.text
     searchtext=e.SEARCH_EDUCATION_TEXT
     if searchtext in allText:
@@ -52,7 +52,7 @@ class Test_educationCalendar():
   def test_searchInstructor(self) :
 
     Test_educationCalendar.test_educationCalendarAccess(self)
-    searchInstructorText= WebDriverWait(self.driver, 5).until(ec.visibility_of_element_located((By.CLASS_NAME,e.INSTRUCTOR_CLASS)))
+    searchInstructorText= WebDriverWait(self.driver, 5).until(ec.visibility_of_element_located((By.CSS_SELECTOR,e.INSTRUCTOR_CLASS)))
     searchInstructorText.click()
     textArea=self.driver.find_element(By.CLASS_NAME,"css-1jqq78o-placeholder")
     sleep(3)
